@@ -11,7 +11,7 @@ export function WidgetCard({ icon: Icon, label }: WidgetCardProps) {
   return (
     <GlassView glassEffectStyle="clear" style={styles.glassContainer}>
       <View style={styles.widgetContent}>
-        <Icon size={24} color="#97979B" />
+        <Icon size={18} color="#97979B" />
         <Text style={styles.text}>{label}</Text>
       </View>
     </GlassView>
@@ -30,5 +30,5 @@ const styles = StyleSheet.create({
     gap: 15,
   },
 
-  text: { color: "white", fontSize: 20 },
+  text: { color: "white", fontSize: 14 },
 });
