@@ -1,22 +1,24 @@
-import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { AudioLines } from "lucide-react-native";
+import { StyleSheet, View } from "react-native";
+import { WidgetCard } from "../components/WidgetCard";
 
 export default function Index() {
   return (
-    <View style={styles.container}>
       <LinearGradient colors={["#151518", "#2B3037"]} style={styles.background}>
-        <Text style={styles.text}>Gradient Background</Text>
+
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          <WidgetCard icon={AudioLines} label="Voice Mode" />
+        </View>
+
       </LinearGradient>
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
   background: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-  text: { color: "white", fontSize: 20 },
 });
