@@ -1,48 +1,97 @@
 import { GlassView } from "expo-glass-effect";
 import {
-    ChevronDown,
-    Lightbulb,
-    Mic,
-    Orbit,
-    Paperclip
+  ChevronDown,
+  Lightbulb,
+  Mic,
+  Square,
+  Orbit,
+  Paperclip,
 } from "lucide-react-native";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+import Animated, { ZoomIn, ZoomOut, Keyframe } from "react-native-reanimated";
+import { useState } from "react";
+
+const AnimatedTouchableOpacity =
+  Animated.createAnimatedComponent(TouchableOpacity);
+const AnimatedSquare = Animated.createAnimatedComponent(Square);
+const AnimatedMic = Animated.createAnimatedComponent(Mic);
+
+
 
 export function PromptInput() {
+  const [recording, setRecording] = useState(false);
+
   return (
     <GlassView glassEffectStyle="clear" style={styles.container}>
       <View style={styles.content}>
-        <TextInput 
+        <TextInput
           style={styles.input}
           placeholder="Ask Anything"
           placeholderTextColor="#97979B"
           multiline
         />
-        
-        <View style={styles.controlsRow}>
-            {/* Left Actions */}
-            <View style={styles.leftActions}>
-                <TouchableOpacity style={styles.iconButton}>
-                    <Paperclip size={20} color="#E0E0E0" />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.iconButton}>
-                    <Orbit size={20} color="#E0E0E0" />
-                </TouchableOpacity>
-                 <TouchableOpacity style={styles.iconButton}>
-                    <Lightbulb size={20} color="#E0E0E0" />
-                </TouchableOpacity>
-            </View>
 
-            {/* Right Actions */}
-            <View style={styles.rightActions}>
-                <TouchableOpacity style={styles.modelSelector}>
-                    <Text style={styles.modelText}>Grok 3</Text>
-                    <ChevronDown size={16} color="#E0E0E0" />
-                </TouchableOpacity>
-                 <TouchableOpacity style={styles.iconButton}>
-                    <Mic size={20} color="#E0E0E0" />
-                </TouchableOpacity>
-            </View>
+        <View style={styles.controlsRow}>
+          {/* Left Actions */}
+          <View style={styles.leftActions}>
+            <TouchableOpacity style={styles.iconButton}>
+              <Paperclip size={20} color="#E0E0E0" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconButton}>
+              <Orbit size={20} color="#E0E0E0" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconButton}>
+              <Lightbulb size={20} color="#E0E0E0" />
+            </TouchableOpacity>
+          </View>
+
+          {/* Right Actions */}
+          <View style={styles.rightActions}>
+            <TouchableOpacity style={styles.modelSelector}>
+              <Text style={styles.modelText}>Grok 3</Text>
+              <ChevronDown size={16} color="#E0E0E0" />
+            </TouchableOpacity>
+
+            <AnimatedTouchableOpacity
+              onPress={() => setRecording(!recording)}
+              style={[
+                styles.iconButton,
+                {
+                  transitionProperty: "backgroundColor",
+                  transitionDuration: "0.2s",
+                  transitionTimingFunction: "ease-in-out",
+                  backgroundColor: recording
+                    ? "white"
+                    : "rgba(255, 255, 255, 0.07)",
+                },
+              ]}
+            >
+              {recording ? (
+                <AnimatedSquare
+                  key="square"
+                  entering={ZoomIn.duration(200)}
+                  exiting={ZoomOut.duration(200)}
+                  size={20}
+                  color="black"
+                />
+              ) : (
+                <AnimatedMic
+                  key="mic"
+                  entering={ZoomIn.duration(200)}
+                  exiting={ZoomOut.duration(200)}
+                  size={20}
+                  color="#E0E0E0"
+                />
+              )}
+            </AnimatedTouchableOpacity>
+          </View>
         </View>
       </View>
     </GlassView>
