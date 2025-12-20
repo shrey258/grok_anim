@@ -3,9 +3,9 @@ import {
   ChevronDown,
   Lightbulb,
   Mic,
-  Square,
   Orbit,
   Paperclip,
+  Square,
 } from "lucide-react-native";
 import {
   StyleSheet,
@@ -15,15 +15,40 @@ import {
   View,
 } from "react-native";
 
-import Animated, { ZoomIn, ZoomOut, Keyframe } from "react-native-reanimated";
 import { useState } from "react";
+import Animated, {
+  Easing,
+  Keyframe
+} from "react-native-reanimated";
 
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
 const AnimatedSquare = Animated.createAnimatedComponent(Square);
 const AnimatedMic = Animated.createAnimatedComponent(Mic);
 
+const CustomZoomIn = new Keyframe({
+  from: {
+    transform: [{ scale: 0 }],
+    opacity: 0,
+  },
+  to: {
+    transform: [{ scale: 1 }],
+    opacity: 1,
+    easing: Easing.inOut(Easing.quad),
+  },
+}).duration(200);
 
+const CustomZoomOut = new Keyframe({
+  from: {
+    transform: [{ scale: 1 }],
+    opacity: 1,
+  },
+  to: {
+    transform: [{ scale: 0 }],
+    opacity: 0,
+    easing: Easing.inOut(Easing.quad),
+  },
+}).duration(200);
 
 export function PromptInput() {
   const [recording, setRecording] = useState(false);
@@ -76,16 +101,16 @@ export function PromptInput() {
               {recording ? (
                 <AnimatedSquare
                   key="square"
-                  entering={ZoomIn.duration(200)}
-                  exiting={ZoomOut.duration(200)}
+                  entering={CustomZoomIn}
+                  exiting={CustomZoomOut}
                   size={20}
                   color="black"
                 />
               ) : (
                 <AnimatedMic
                   key="mic"
-                  entering={ZoomIn.duration(200)}
-                  exiting={ZoomOut.duration(200)}
+                  entering={CustomZoomIn}
+                  exiting={CustomZoomOut}
                   size={20}
                   color="#E0E0E0"
                 />
