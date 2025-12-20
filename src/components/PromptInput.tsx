@@ -1,4 +1,5 @@
 import { GlassView } from "expo-glass-effect";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   ChevronDown,
   Lightbulb,
@@ -52,67 +53,82 @@ export function PromptInput() {
 
   return (
     <GlassView glassEffectStyle="clear" style={styles.container}>
-      <View style={styles.content}>
-        <TextInput
-          style={styles.input}
-          placeholder="Ask Anything"
-          placeholderTextColor="#97979B"
-          multiline
-        />
+      <View>
+        {recording && (
+          <LinearGradient
+            colors={[
+              "rgba(99, 109, 255, 0.9)",
+              "rgba(156, 76, 255, 0.9)",
+              "rgba(255, 122, 195, 0.85)",
+            ]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.gradient}
+          />
+        )}
 
-        <View style={styles.controlsRow}>
-          {/* Left Actions */}
-          <View style={styles.leftActions}>
-            <TouchableOpacity style={styles.iconButton}>
-              <Paperclip size={20} color="#E0E0E0" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconButton}>
-              <Orbit size={20} color="#E0E0E0" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconButton}>
-              <Lightbulb size={20} color="#E0E0E0" />
-            </TouchableOpacity>
-          </View>
+        <View style={styles.content}>
+          <TextInput
+            style={styles.input}
+            placeholder="Ask Anything"
+            placeholderTextColor="#97979B"
+            multiline
+          />
 
-          {/* Right Actions */}
-          <View style={styles.rightActions}>
-            <TouchableOpacity style={styles.modelSelector}>
-              <Text style={styles.modelText}>Grok 3</Text>
-              <ChevronDown size={16} color="#E0E0E0" />
-            </TouchableOpacity>
+          <View style={styles.controlsRow}>
+            {/* Left Actions */}
+            <View style={styles.leftActions}>
+              <TouchableOpacity style={styles.iconButton}>
+                <Paperclip size={20} color="#E0E0E0" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconButton}>
+                <Orbit size={20} color="#E0E0E0" />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.iconButton}>
+                <Lightbulb size={20} color="#E0E0E0" />
+              </TouchableOpacity>
+            </View>
 
-            <AnimatedTouchableOpacity
-              onPress={() => setRecording(!recording)}
-              style={[
-                styles.iconButton,
-                {
-                  transitionProperty: "backgroundColor",
-                  transitionDuration: "0.2s",
-                  transitionTimingFunction: "ease-in-out",
-                  backgroundColor: recording
-                    ? "white"
-                    : "rgba(255, 255, 255, 0.07)",
-                },
-              ]}
-            >
-              {recording ? (
-                <AnimatedSquare
-                  key="square"
-                  entering={CustomZoomIn}
-                  exiting={CustomZoomOut}
-                  size={20}
-                  color="black"
-                />
-              ) : (
-                <AnimatedMic
-                  key="mic"
-                  entering={CustomZoomIn}
-                  exiting={CustomZoomOut}
-                  size={20}
-                  color="#E0E0E0"
-                />
-              )}
-            </AnimatedTouchableOpacity>
+            {/* Right Actions */}
+            <View style={styles.rightActions}>
+              <TouchableOpacity style={styles.modelSelector}>
+                <Text style={styles.modelText}>Grok 3</Text>
+                <ChevronDown size={16} color="#E0E0E0" />
+              </TouchableOpacity>
+
+              <AnimatedTouchableOpacity
+                onPress={() => setRecording(!recording)}
+                style={[
+                  styles.iconButton,
+                  {
+                    transitionProperty: "backgroundColor",
+                    transitionDuration: "0.2s",
+                    transitionTimingFunction: "ease-in-out",
+                    backgroundColor: recording
+                      ? "white"
+                      : "rgba(255, 255, 255, 0.07)",
+                  },
+                ]}
+              >
+                {recording ? (
+                  <AnimatedSquare
+                    key="square"
+                    entering={CustomZoomIn}
+                    exiting={CustomZoomOut}
+                    size={20}
+                    color="black"
+                  />
+                ) : (
+                  <AnimatedMic
+                    key="mic"
+                    entering={CustomZoomIn}
+                    exiting={CustomZoomOut}
+                    size={20}
+                    color="#E0E0E0"
+                  />
+                )}
+              </AnimatedTouchableOpacity>
+            </View>
           </View>
         </View>
       </View>
@@ -132,7 +148,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 18,
     gap: 12,
     width: "100%",
+    position: "relative",
   },
+  gradient: {
+    ...StyleSheet.absoluteFillObject,
+  },
+
   input: {
     fontSize: 18,
     color: "white",
