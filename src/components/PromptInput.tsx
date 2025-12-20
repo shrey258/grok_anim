@@ -16,10 +16,7 @@ import {
 } from "react-native";
 
 import { useState } from "react";
-import Animated, {
-  Easing,
-  Keyframe
-} from "react-native-reanimated";
+import Animated, { Easing, Keyframe } from "react-native-reanimated";
 
 const AnimatedTouchableOpacity =
   Animated.createAnimatedComponent(TouchableOpacity);
