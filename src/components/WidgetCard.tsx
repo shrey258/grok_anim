@@ -20,15 +20,19 @@ export function WidgetCard({ icon: Icon, label }: WidgetCardProps) {
 
 const styles = StyleSheet.create({
   glassContainer: {
-    padding: 20,
-    borderRadius: 24,
+    flex: 1,
+    minWidth: 0,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 16,
   },
 
   widgetContent: {
     flexDirection: "column",
     justifyContent: "space-evenly",
+    alignItems: "center",
     gap: 15,
   },
 
-  text: { color: "white", fontSize: 14 },
+  text: { color: "white", fontSize: 13 },
 });
