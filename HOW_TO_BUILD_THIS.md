@@ -22,13 +22,13 @@ Instead of writing GLSL code, we just draw two colored circles on a canvas and b
 
 Before we add the blur, you can see how the circles are actually moving. It’s just simple geometry drifting in a loop.
 
-![Animation without Blur](./assets/videos/without_blur.mov)
+![Animation without Blur](https://github.com/shrey258/grok_anim/blob/main/assets/videos/without_blur.mov?raw=true)
 
 ### The Magic: Adding the Blur
 
 When you blur those same overlapping circles by **360px**, they stop looking like geometry and start looking like a fluid gradient. It’s cheap, fast, and looks identical to the expensive stuff.
 
-![Animation with Blur](./assets/videos/with_blur.mov)
+![Animation with Blur](https://github.com/shrey258/grok_anim/blob/main/assets/videos/with_blur.mov?raw=true)
 
 ```tsx
 <Canvas style={{ flex: 1 }}>
