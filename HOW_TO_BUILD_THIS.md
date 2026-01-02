@@ -23,7 +23,7 @@ Instead of writing GLSL code, we just draw two colored circles on a canvas and b
 Before we add the blur, you can see how the circles are actually moving. It’s just simple geometry drifting in a loop.
 
 
-https://github.com/user-attachments/assets/055b39b7-48dc-4e77-a32b-ccb89bfe9ee1
+![without_blur](https://github.com/user-attachments/assets/5f7b88d4-aa63-431e-900d-bb4d28ef63d2)
 
 
 
@@ -32,9 +32,7 @@ https://github.com/user-attachments/assets/055b39b7-48dc-4e77-a32b-ccb89bfe9ee1
 
 When you blur those same overlapping circles by **360px**, they stop looking like geometry and start looking like a fluid gradient. It’s cheap, fast, and looks identical to the expensive stuff.
 
-
-
-https://github.com/user-attachments/assets/eec73170-a5db-4cdb-9d29-50499acf8b78
+![with_blur](https://github.com/user-attachments/assets/0204877f-ab30-4a48-8f85-94bd59524c2a)
 
 
 
