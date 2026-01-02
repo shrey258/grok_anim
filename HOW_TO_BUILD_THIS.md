@@ -18,6 +18,18 @@ Real mesh gradients involve complicated shaders and math. I don't like math. I l
 
 Instead of writing GLSL code, we just draw two colored circles on a canvas and blur them until they look like a single, dreamy soup.
 
+### Behind the Scenes: The Raw Circles
+
+Before we add the blur, you can see how the circles are actually moving. It’s just simple geometry drifting in a loop.
+
+![Animation without Blur](./assets/videos/without_blur.mov)
+
+### The Magic: Adding the Blur
+
+When you blur those same overlapping circles by **360px**, they stop looking like geometry and start looking like a fluid gradient. It’s cheap, fast, and looks identical to the expensive stuff.
+
+![Animation with Blur](./assets/videos/with_blur.mov)
+
 ```tsx
 <Canvas style={{ flex: 1 }}>
   <Group>

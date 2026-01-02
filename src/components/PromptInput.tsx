@@ -2,8 +2,7 @@ import {
   BlurMask,
   Canvas,
   Circle,
-  Fill,
-  Group,
+  Group
 } from "@shopify/react-native-skia";
 import { BlurView } from "expo-blur";
 import { GlassView } from "expo-glass-effect";
